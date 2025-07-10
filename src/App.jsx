@@ -8,6 +8,7 @@ import CreateEventPage from './pages/CreateEventPage.jsx'
 import EventDetailsPage from './pages/EventDetailsPage.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import ProtectedRoot from './components/ProtectedRoot.jsx'
 
 function App() {
   
@@ -18,8 +19,11 @@ function App() {
         <Route path='/' element={<HomePage />}/>
         <Route path='/signup' element={<SignUpPage />}/>
         <Route path='/signin' element={<SignInPage />}/>
-        <Route path='/create-event' element={<CreateEventPage />}/>
+        <Route path='/create-event' element={<ProtectedRoot/>}>
+           <Route index  element={<CreateEventPage />}/>
+        </Route> 
         <Route path='/event' element={<EventDetailsPage />}/>
+        <Route path='*' element={<p>Error</p>}/>
       </Routes>
       <Footer />
     </>
