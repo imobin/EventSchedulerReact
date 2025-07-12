@@ -13,6 +13,7 @@ import { useState } from 'react'
 
 function App() {
   const [isRegistered, setisRegistered] = useState(JSON.parse(localStorage.getItem("token"))!=null ? true:false)
+  const [eventList, seteventList] = useState([])
   console.log(JSON.parse(localStorage.getItem("token")))
   
   // const token = localStorage.setItem(token, JSON.stringify(""))
@@ -26,7 +27,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<HomePage />}/>
+        <Route path='/' element={<HomePage eventList={eventList} seteventList={seteventList}/>}/>
         <Route path='/signup' element={<SignUpPage />}/>
         <Route path='/signin' element={<SignInPage isRegistered={isRegistered} setisRegistered={setisRegistered}/>}/>
         <Route path='/create-event' element={<ProtectedRoot setisRegistered={setisRegistered} isRegistered={isRegistered}/>}>
