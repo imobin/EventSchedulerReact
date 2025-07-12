@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router";
 
-export default function EventCard({title, description}) {
+export default function EventCard({title, description, id}) {
   return (
     <div>
       <div className="card bg-base-100 w-96 shadow-sm">
@@ -10,7 +11,7 @@ export default function EventCard({title, description}) {
             {description}
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Details</button>
+            <Link to={`/event/${id}`}> <button className="btn btn-primary">Details</button> </Link>
           </div>
         </div>
       </div>
