@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-export default function LoginForm() {
-  const [isAuth, setisAuth] = useState(false);
+export default function LoginForm({setisRegistered}) {
+  // const [isAuth, setisAuth] = useState(false);
+
+  const navigate = useNavigate()
   function getLogData(e) {
     e.preventDefault();
     const userloginData = {
@@ -12,12 +15,18 @@ export default function LoginForm() {
     axios
       .post("http://localhost:3001/api/auth/login", userloginData)
       .then((i) => {
-        if (i.data.token.length > 0) {
-          alert(
-            `Welcome ${userloginData.email} \n your token is:\n ${i.data.token}`
-          );
-        } else{alert("Email or password is wrong")}
-      });
+        // console.log(i);
+        
+        if (i.status == 200) {
+          localStorage.setItem("token", JSON.stringify(i.data.token))
+          
+          // alert(
+          //   `Welcome ${userloginData.email}`
+          // );
+          setisRegistered(true)
+          navigate("/create-event")
+        }
+      }).catch((i) => {i})
   }
 
   return (

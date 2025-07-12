@@ -1,10 +1,10 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 
-export default function SignInPage() {
+export default function SignInPage({setisRegistered}) {
   return (
     <>
-      <LoginForm />
+      <LoginForm setisRegistered={setisRegistered}/>
     </>
   );
 }
