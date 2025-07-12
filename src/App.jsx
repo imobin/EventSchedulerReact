@@ -33,7 +33,7 @@ function App() {
         <Route path='/create-event' element={<ProtectedRoot setisRegistered={setisRegistered} isRegistered={isRegistered}/>}>
            <Route index  element={<CreateEventPage />}/>
         </Route> 
-        <Route path='/event' element={<EventDetailsPage />}/>
+        <Route path='/event/:id' element={<EventDetailsPage />}/>
         <Route path='*' element={<p>Error</p>}/>
       </Routes>
       <Footer />
