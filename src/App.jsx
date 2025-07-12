@@ -12,9 +12,16 @@ import ProtectedRoot from './components/ProtectedRoot.jsx'
 import { useState } from 'react'
 
 function App() {
-  const [isRegistered, setisRegistered] = useState(false)
+  const [isRegistered, setisRegistered] = useState(JSON.parse(localStorage.getItem("token"))!=null ? true:false)
+  console.log(JSON.parse(localStorage.getItem("token")))
+  
   // const token = localStorage.setItem(token, JSON.stringify(""))
-  const token = ""
+  // const token = ""
+  // const token = 
+  
+  // if(token.length > 0){
+  //   setisRegistered(true)
+  // }
   return (
     <>
       <Navbar />
@@ -22,7 +29,7 @@ function App() {
         <Route path='/' element={<HomePage />}/>
         <Route path='/signup' element={<SignUpPage />}/>
         <Route path='/signin' element={<SignInPage isRegistered={isRegistered} setisRegistered={setisRegistered}/>}/>
-        <Route path='/create-event' element={<ProtectedRoot setisRegistered={setisRegistered} token={token}/>}>
+        <Route path='/create-event' element={<ProtectedRoot setisRegistered={setisRegistered} isRegistered={isRegistered}/>}>
            <Route index  element={<CreateEventPage />}/>
         </Route> 
         <Route path='/event' element={<EventDetailsPage />}/>

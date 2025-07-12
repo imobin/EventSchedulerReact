@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-export default function LoginForm({token}) {
+export default function LoginForm({setisRegistered}) {
   // const [isAuth, setisAuth] = useState(false);
 
   const navigate = useNavigate()
@@ -15,12 +15,15 @@ export default function LoginForm({token}) {
     axios
       .post("http://localhost:3001/api/auth/login", userloginData)
       .then((i) => {
+        // console.log(i);
+        
         if (i.status == 200) {
           localStorage.setItem("token", JSON.stringify(i.data.token))
           
-          alert(
-            `Hi`
-          );
+          // alert(
+          //   `Welcome ${userloginData.email}`
+          // );
+          setisRegistered(true)
           navigate("/create-event")
         }
       }).catch((i) => {i})
